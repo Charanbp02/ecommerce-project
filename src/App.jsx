@@ -1,20 +1,22 @@
 import React from 'react'
 import Navbar from './components/Navbar/Navbar'
 import Hero from './components/Hero/Hero'
-import Products from './components/Products/Products'
-import TopProducts from './components/TopProducts/TopProducts'
-import Banner from './components/Banner/Banner'
-import Subscribe from './components/Subscribe/Subscribe'
 import Footer from './components/Footer/Footer'
+import Features from './components/Features/Features'
+import CategoryCards from './components/CategoryCards/CategoryCards'
+import TrendingProducts from './components/TrendingProducts/TrendingProducts'
+import CategoryTabs from './components/CategoryTabs/CategoryTabs'
+import CustomerReviews from './components/CustomerReviews/CustomerReviews'
 
 const App = () => {
   return <div>
     <Navbar/>
     <Hero/>
-    <Products/>
-    <TopProducts/>
-    <Banner/>
-    <Subscribe/>
+    <Features/>
+    <CategoryCards/>
+    <TrendingProducts/>
+    <CategoryTabs/>
+    <CustomerReviews/>
     <Footer/>
     </div>
   
