@@ -7,6 +7,7 @@ import CategoryCards from './components/CategoryCards/CategoryCards'
 import TrendingProducts from './components/TrendingProducts/TrendingProducts'
 import CategoryTabs from './components/CategoryTabs/CategoryTabs'
 import CustomerReviews from './components/CustomerReviews/CustomerReviews'
+import FeaturedCollection from './components/FeaturedCollection/FeaturedCollection'
 
 const App = () => {
   return <div>
@@ -17,6 +18,7 @@ const App = () => {
     <TrendingProducts/>
     <CategoryTabs/>
     <CustomerReviews/>
+    <FeaturedCollection/>
     <Footer/>
     </div>
   

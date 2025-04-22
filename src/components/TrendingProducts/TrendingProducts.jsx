@@ -39,38 +39,73 @@ const TrendingProducts = () => {
   return (
     <div className="px-6 py-10">
       <h2 className="text-3xl font-bold text-center mb-2">Trending product</h2>
-      <p className="text-center mb-6 text-gray-500">Follow the most popular trends and get exclusive items from Foesta shop.</p>
+      <p className="text-center mb-6 text-gray-500">
+        Follow the most popular trends and get exclusive items from Foesta shop.
+      </p>
 
       <div className="relative">
-        <button onClick={() => scroll(-300)} className="absolute left-0 z-10 top-1/2 -translate-y-1/2 bg-white shadow rounded-full p-3">
+        <button
+          onClick={() => scroll(-300)}
+          className="absolute left-0 z-10 top-1/2 -translate-y-1/2 bg-white shadow rounded-full p-3"
+        >
           <FaChevronLeft />
         </button>
-        <div ref={sliderRef} className="flex overflow-x-auto gap-4 scroll-smooth pb-4 no-scrollbar">
+        <div
+          ref={sliderRef}
+          className="flex overflow-x-auto gap-4 scroll-smooth pb-4 no-scrollbar"
+        >
           {products.map((product, i) => (
-            <div key={i} className="min-w-[250px] bg-white rounded-xl shadow p-4 relative">
-              <img src={product.image} alt={product.title} className="rounded-xl mb-4 h-72 w-full object-cover" />
+            <div
+              key={i}
+              className="min-w-[250px] bg-white rounded-xl shadow p-4 relative group"
+            >
+              <img
+                src={product.image}
+                alt={product.title}
+                className="rounded-xl mb-4 h-72 w-full object-cover"
+              />
               {product.discount && (
                 <div className="absolute top-4 left-4 bg-red-600 text-white px-2 py-1 text-sm rounded-full">
                   {product.discount} sale
                 </div>
               )}
+
+              {/* Action Buttons */}
+              <div className="absolute top-4 right-4 flex flex-col gap-3 opacity-0 group-hover:opacity-100 transition">
+                {[FaEye, FaHeart].map((Icon, index) => (
+                  <button
+                    key={index}
+                    className="bg-white p-2 rounded-full shadow-md hover:bg-gray-200"
+                  >
+                    <Icon className="w-4 h-4" />
+                  </button>
+                ))}
+              </div>
+
+              {/* Add to Cart Button */}
+              <button
+                className="absolute bottom-20 left-1/2 -translate-x-1/2 bg-black text-white px-6 py-2 rounded-full flex items-center justify-center gap-2 hover:bg-gray-800 opacity-0 group-hover:opacity-100 transition"
+              >
+                <FaShoppingBag /> Add To Cart
+              </button>
+
               <h3 className="text-md font-semibold">{product.title}</h3>
               <p className="text-sm text-gray-600">
                 {product.from ? "From " : ""}
                 <span className="text-black font-bold">Tk {product.price}.00 BDT</span>
               </p>
               {product.originalPrice && (
-                <p className="text-sm text-gray-400 line-through">Tk {product.originalPrice}.00 BDT</p>
-              )}
-              {i === 1 && (
-                <button className="mt-4 bg-black text-white px-6 py-2 rounded-full flex items-center justify-center gap-2 hover:bg-gray-800">
-                  <FaShoppingBag /> Add To Cart
-                </button>
+                <p className="text-sm text-gray-400 line-through">
+                  Tk {product.originalPrice}.00 BDT
+                </p>
               )}
             </div>
           ))}
         </div>
-        <button onClick={() => scroll(300)} className="absolute right-0 z-10 top-1/2 -translate-y-1/2 bg-white shadow rounded-full p-3">
+        <button
+          onClick={() => scroll(300)}
+          className="absolute right-0 z-10 top-1/2 -translate-y-1/2 bg-white shadow rounded-full p-3"
+        >
           <FaChevronRight />
         </button>
       </div>

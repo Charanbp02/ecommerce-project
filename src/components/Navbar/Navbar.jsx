@@ -20,9 +20,15 @@ const DropdownLinks = [
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
+    const [isDropdownOpen, setIsDropdownOpen] = useState(false); // New state for dropdown
 
     const toggleMenu = () => {
         setIsOpen(!isOpen);
+        if (isOpen) setIsDropdownOpen(false); // Close dropdown when menu closes
+    };
+
+    const toggleDropdown = () => {
+        setIsDropdownOpen(!isDropdownOpen);
     };
 
     return (
@@ -94,7 +100,10 @@ const Navbar = () => {
                             <a
                                 href={data.link}
                                 className='block px-4 py-2 hover:text-primary duration-200 md:inline-block'
-                                onClick={() => setIsOpen(false)}
+                                onClick={() => {
+                                    setIsOpen(false);
+                                    setIsDropdownOpen(false); // Close dropdown when clicking a menu item
+                                }}
                             >
                                 {data.name}
                             </a>
@@ -103,20 +112,38 @@ const Navbar = () => {
 
                     {/* Dropdown */}
                     <li className="group relative md:inline-block">
-                        <a href="#" className="flex items-center gap-[2px] px-4 py-2 hover:text-primary duration-200">
+                        <a
+                            href="#"
+                            className="flex items-center gap-[2px] px-4 py-2 hover:text-primary duration-200"
+                            onClick={(e) => {
+                                e.preventDefault(); // Prevent default link behavior
+                                toggleDropdown(); // Toggle dropdown in mobile view
+                            }}
+                        >
                             Trending Products
                             <span>
-                                <FaCaretDown className="transition-all duration-200 group-hover:rotate-180" />
+                                <FaCaretDown
+                                    className={`transition-all duration-200 ${
+                                        isDropdownOpen ? 'rotate-180' : ''
+                                    } md:group-hover:rotate-180`}
+                                />
                             </span>
                         </a>
-                        <div className="md:absolute md:z-[9999] md:hidden md:group-hover:block w-full md:w-[200px] rounded-md bg-white dark:bg-gray-900 md:p-2 text-black dark:text-white shadow-md md:shadow-lg">
+                        <div
+                            className={`md:absolute md:z-[9999] w-full md:w-[200px] rounded-md bg-white dark:bg-gray-900 md:p-2 text-black dark:text-white shadow-md md:shadow-lg ${
+                                isDropdownOpen ? 'block' : 'hidden'
+                            } md:hidden md:group-hover:block`}
+                        >
                             <ul>
                                 {DropdownLinks.map((data) => (
                                     <li key={data.id}>
                                         <a
                                             href={data.link}
                                             className='block px-4 py-2 md:rounded-md hover:bg-primary/20'
-                                            onClick={() => setIsOpen(false)}
+                                            onClick={() => {
+                                                setIsOpen(false);
+                                                setIsDropdownOpen(false); // Close dropdown and menu
+                                            }}
                                         >
                                             {data.name}
                                         </a>
@@ -132,6 +159,7 @@ const Navbar = () => {
                             onClick={() => {
                                 alert("Ordering not available yet");
                                 setIsOpen(false);
+                                setIsDropdownOpen(false); // Close dropdown when ordering
                             }}
                             className="bg-gradient-to-r from-primary to-secondary w-full text-white py-2 px-4 rounded-full flex items-center justify-center gap-3"
                         >
