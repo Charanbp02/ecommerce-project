@@ -1,5 +1,11 @@
 import React, { useRef } from "react";
-import { FaChevronLeft, FaChevronRight, FaShoppingBag, FaHeart, FaEye } from "react-icons/fa";
+import {
+  FaChevronLeft,
+  FaChevronRight,
+  FaShoppingBag,
+  FaHeart,
+  FaEye,
+} from "react-icons/fa";
 
 const products = [
   {
@@ -28,7 +34,6 @@ const products = [
     image: "https://nmquritpryrthvxcvkxi.supabase.co/storage/v1/object/sign/trendingproduct/shopping.webp?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InN0b3JhZ2UtdXJsLXNpZ25pbmcta2V5Xzg3MDU3MDllLWJlYjUtNDNhNy04YWQ4LTZkNWU5NDU4MmI5NiJ9.eyJ1cmwiOiJ0cmVuZGluZ3Byb2R1Y3Qvc2hvcHBpbmcud2VicCIsImlhdCI6MTc0NTMxMzEyNywiZXhwIjoxNzc2ODQ5MTI3fQ.XG-CvYY_Sc88w4jz7srhbe9oWM1gLZMZLAaISVy5zQo",
   },
 ];
-
 const TrendingProducts = () => {
   const sliderRef = useRef();
 
@@ -38,18 +43,28 @@ const TrendingProducts = () => {
 
   return (
     <div className="px-6 py-10">
-      <h2 className="text-3xl font-bold text-center mb-2">Trending product</h2>
-      <p className="text-center mb-6 text-gray-500">
-        Follow the most popular trends and get exclusive items from Foesta shop.
-      </p>
+      {/* Title + View All */}
+      <div className="flex items-center justify-between mb-6">
+        <h2 className="text-3xl font-bold relative inline-block after:content-[''] after:absolute after:left-0 after:-bottom-2 after:w-full after:h-1 after:bg-black">
+          Trending Products
+        </h2>
+        <button
+          onClick={() => alert("View All clicked")}
+          className="text-primary font-medium hover:underline"
+        >
+          View All
+        </button>
+      </div>
 
+      {/* Product Slider */}
       <div className="relative">
         <button
           onClick={() => scroll(-300)}
-          className="absolute left-0 z-10 top-1/2 -translate-y-1/2 bg-white shadow rounded-full p-3"
+          className="absolute left-0 z-10 top-1/2 -translate-y-1/2 bg-white shadow rounded-full p-3 hidden md:block"
         >
           <FaChevronLeft />
         </button>
+
         <div
           ref={sliderRef}
           className="flex overflow-x-auto gap-4 scroll-smooth pb-4 no-scrollbar"
@@ -70,7 +85,7 @@ const TrendingProducts = () => {
                 </div>
               )}
 
-              {/* Action Buttons */}
+              {/* Hover Icons */}
               <div className="absolute top-4 right-4 flex flex-col gap-3 opacity-0 group-hover:opacity-100 transition">
                 {[FaEye, FaHeart].map((Icon, index) => (
                   <button
@@ -83,16 +98,16 @@ const TrendingProducts = () => {
               </div>
 
               {/* Add to Cart Button */}
-              <button
-                className="absolute bottom-20 left-1/2 -translate-x-1/2 bg-black text-white px-6 py-2 rounded-full flex items-center justify-center gap-2 hover:bg-gray-800 opacity-0 group-hover:opacity-100 transition"
-              >
+              <button className="absolute bottom-20 left-1/2 -translate-x-1/2 bg-black text-white px-6 py-2 rounded-full flex items-center justify-center gap-2 hover:bg-gray-800 opacity-0 group-hover:opacity-100 transition">
                 <FaShoppingBag /> Add To Cart
               </button>
 
               <h3 className="text-md font-semibold">{product.title}</h3>
               <p className="text-sm text-gray-600">
                 {product.from ? "From " : ""}
-                <span className="text-black font-bold">Tk {product.price}.00 BDT</span>
+                <span className="text-black font-bold">
+                  Tk {product.price}.00 BDT
+                </span>
               </p>
               {product.originalPrice && (
                 <p className="text-sm text-gray-400 line-through">
@@ -102,9 +117,10 @@ const TrendingProducts = () => {
             </div>
           ))}
         </div>
+
         <button
           onClick={() => scroll(300)}
-          className="absolute right-0 z-10 top-1/2 -translate-y-1/2 bg-white shadow rounded-full p-3"
+          className="absolute right-0 z-10 top-1/2 -translate-y-1/2 bg-white shadow rounded-full p-3 hidden md:block"
         >
           <FaChevronRight />
         </button>

@@ -28,16 +28,30 @@ const reviews = [
 export default function CustomerReviews() {
   return (
     <section className="bg-gray-50 py-10 px-4 md:px-16">
-      <div className="text-center mb-10">
-        <h2 className="text-3xl font-bold">Customers Review</h2>
-        <p className="text-gray-600 mt-2">Share information about your brand with your customers.</p>
+      {/* Heading + View All Button */}
+      <div className="flex items-center justify-between mb-10">
+        <div>
+          <h2 className="text-3xl font-bold relative inline-block after:content-[''] after:absolute after:left-0 after:-bottom-2 after:w-full after:h-1 after:bg-black">
+            Customers Review
+          </h2>
+        </div>
+        <button
+          onClick={() => alert("View All clicked")}
+          className="text-primary font-medium hover:underline"
+        >
+          View All
+        </button>
       </div>
 
+      {/* Review Cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {reviews.map((review, index) => (
-          <div key={index} className="bg-white p-6 rounded-2xl shadow-md text-center">
+          <div
+            key={index}
+            className="bg-white p-6 rounded-2xl shadow-md text-center"
+          >
             <h3 className="font-semibold text-lg">{review.title}</h3>
-            <div className="flex justify-center text-yellow-400 my-2">
+            <div className="flex justify-center text-yellow-400 my-2 text-lg">
               {"★".repeat(review.stars)}
             </div>
             <p className="text-gray-700 text-sm mb-6">“{review.text}”</p>

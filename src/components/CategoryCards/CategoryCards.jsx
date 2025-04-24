@@ -9,15 +9,18 @@ const categories = [
   },
   {
     title: "Men's Fashion",
-    image: "https://nmquritpryrthvxcvkxi.supabase.co/storage/v1/object/sign/kidsfashions/Men%20shirts.webp?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InN0b3JhZ2UtdXJsLXNpZ25pbmcta2V5Xzg3MDU3MDllLWJlYjUtNDNhNy04YWQ4LTZkNWU5NDU4MmI5NiJ9.eyJ1cmwiOiJraWRzZmFzaGlvbnMvTWVuIHNoaXJ0cy53ZWJwIiwiaWF0IjoxNzQ1MzA5Mzg1LCJleHAiOjE3NzY4NDUzODV9.PV_wl-Tf7A_JamvGbtBxbNEJH7pIjeOnACLUCczwZtY",
+    image:
+      "https://nmquritpryrthvxcvkxi.supabase.co/storage/v1/object/sign/kidsfashions/Men%20shirts.webp?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InN0b3JhZ2UtdXJsLXNpZ25pbmcta2V5Xzg3MDU3MDllLWJlYjUtNDNhNy04YWQ4LTZkNWU5NDU4MmI5NiJ9.eyJ1cmwiOiJraWRzZmFzaGlvbnMvTWVuIHNoaXJ0cy53ZWJwIiwiaWF0IjoxNzQ1MzA5Mzg1LCJleHAiOjE3NzY4NDUzODV9.PV_wl-Tf7A_JamvGbtBxbNEJH7pIjeOnACLUCczwZtY",
   },
   {
     title: "New Arrivals",
-    image: "https://nmquritpryrthvxcvkxi.supabase.co/storage/v1/object/sign/kidsfashions/ks8dv_1200.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InN0b3JhZ2UtdXJsLXNpZ25pbmcta2V5Xzg3MDU3MDllLWJlYjUtNDNhNy04YWQ4LTZkNWU5NDU4MmI5NiJ9.eyJ1cmwiOiJraWRzZmFzaGlvbnMva3M4ZHZfMTIwMC5qcGciLCJpYXQiOjE3NDUzMDk1MTUsImV4cCI6MTc3Njg0NTUxNX0.Az3QqHKN6Fddoi6K39DKo0Q-nQgG6Ir-1DgbYnwC3MM",
+    image:
+      "https://nmquritpryrthvxcvkxi.supabase.co/storage/v1/object/sign/kidsfashions/ks8dv_1200.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InN0b3JhZ2UtdXJsLXNpZ25pbmcta2V5Xzg3MDU3MDllLWJlYjUtNDNhNy04YWQ4LTZkNWU5NDU4MmI5NiJ9.eyJ1cmwiOiJraWRzZmFzaGlvbnMva3M4ZHZfMTIwMC5qcGciLCJpYXQiOjE3NDUzMDk1MTUsImV4cCI6MTc3Njg0NTUxNX0.Az3QqHKN6Fddoi6K39DKo0Q-nQgG6Ir-1DgbYnwC3MM",
   },
   {
     title: "Top Sale's",
-    image: "https://nmquritpryrthvxcvkxi.supabase.co/storage/v1/object/sign/kidsfashions/images.jpeg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InN0b3JhZ2UtdXJsLXNpZ25pbmcta2V5Xzg3MDU3MDllLWJlYjUtNDNhNy04YWQ4LTZkNWU5NDU4MmI5NiJ9.eyJ1cmwiOiJraWRzZmFzaGlvbnMvaW1hZ2VzLmpwZWciLCJpYXQiOjE3NDUzMDk2NjEsImV4cCI6MTc3Njg0NTY2MX0.BL5heLSwhkTSHK9a1bxfdjLttMTuKGb9L33NU7ustxw",
+    image:
+      "https://nmquritpryrthvxcvkxi.supabase.co/storage/v1/object/sign/kidsfashions/images.jpeg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InN0b3JhZ2UtdXJsLXNpZ25pbmcta2V5Xzg3MDU3MDllLWJlYjUtNDNhNy04YWQ4LTZkNWU5NDU4MmI5NiJ9.eyJ1cmwiOiJraWRzZmFzaGlvbnMvaW1hZ2VzLmpwZWciLCJpYXQiOjE3NDUzMDk2NjEsImV4cCI6MTc3Njg0NTY2MX0.BL5heLSwhkTSHK9a1bxfdjLttMTuKGb9L33NU7ustxw",
   },
 ];
 
@@ -34,27 +37,36 @@ export default function CategoryCards() {
   };
 
   return (
-    <div className="px-6 py-12 bg-white">
-      <h2 className="text-3xl sm:text-4xl font-bold text-center mb-10 relative inline-block after:content-[''] after:block after:w-24 after:h-1 after:bg-black after:mx-auto after:mt-2">
-        Categories
-      </h2>
+    <div className="px-6 py-12 bg-white dark:bg-gray-900">
+      {/* Header + View All */}
+      <div className="flex items-center justify-between mb-10 px-2 sm:px-6">
+        <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white relative inline-block after:content-[''] after:block after:w-24 after:h-1 after:bg-black dark:after:bg-white after:mt-2">
+          Categories
+        </h2>
+        <button
+          onClick={() => alert("View All clicked")}
+          className="text-primary hover:underline font-medium"
+        >
+          View All
+        </button>
+      </div>
 
+      {/* Scroll Buttons */}
       <div className="relative">
-        {/* Scroll Buttons */}
         <button
           onClick={() => scroll("left")}
-          className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white shadow-md p-2 rounded-full hidden md:block"
+          className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white dark:bg-gray-800 shadow-md p-2 rounded-full hidden md:block"
         >
-          <ChevronLeft className="w-6 h-6" />
+          <ChevronLeft className="w-6 h-6 text-black dark:text-white" />
         </button>
         <button
           onClick={() => scroll("right")}
-          className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white shadow-md p-2 rounded-full hidden md:block"
+          className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white dark:bg-gray-800 shadow-md p-2 rounded-full hidden md:block"
         >
-          <ChevronRight className="w-6 h-6" />
+          <ChevronRight className="w-6 h-6 text-black dark:text-white" />
         </button>
 
-        {/* Category Cards - Horizontal Scroll */}
+        {/* Scrollable Cards */}
         <div
           ref={scrollRef}
           className="flex gap-6 overflow-x-auto no-scrollbar scroll-smooth px-1"
