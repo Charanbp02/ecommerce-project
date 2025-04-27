@@ -1,5 +1,6 @@
-import { useRef } from "react";
-import { ChevronLeft, ChevronRight } from "lucide-react"; // Optional icons
+import { useRef, useEffect } from "react";
+import { useNavigate } from "react-router-dom"; // ← Add this
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const categories = [
   {
@@ -26,6 +27,7 @@ const categories = [
 
 export default function CategoryCards() {
   const scrollRef = useRef(null);
+  const navigate = useNavigate(); // ← Add this
 
   const scroll = (direction) => {
     const scrollAmount = 300;
@@ -36,6 +38,14 @@ export default function CategoryCards() {
     }
   };
 
+  // Auto-scroll (Optional and clean)
+  useEffect(() => {
+    const interval = setInterval(() => {
+      scroll("right");
+    }, 4000); // every 4 seconds
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <div className="px-6 py-12 bg-white dark:bg-gray-900">
       {/* Header + View All */}
@@ -44,7 +54,7 @@ export default function CategoryCards() {
           Categories
         </h2>
         <button
-          onClick={() => alert("View All clicked")}
+          onClick={() => navigate("/categories")}
           className="text-primary hover:underline font-medium"
         >
           View All
@@ -83,7 +93,10 @@ export default function CategoryCards() {
             >
               <div className="absolute inset-0 bg-black bg-opacity-30 group-hover:bg-opacity-40 transition duration-300 flex flex-col justify-center items-center text-white text-center px-4">
                 <h3 className="text-xl font-semibold mb-4">{cat.title}</h3>
-                <button className="bg-white text-black px-6 py-2 rounded-full font-medium hover:bg-gray-100 transition">
+                <button
+                  onClick={() => navigate("/category", { state: { category: cat.title } })}
+                  className="bg-white text-black px-6 py-2 rounded-full font-medium hover:bg-gray-100 transition"
+                >
                   Shop Now
                 </button>
               </div>

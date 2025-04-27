@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate } from 'react-router-dom';
+import { IoChevronBackSharp, IoChevronForwardSharp } from "react-icons/io5"; // iPhone-like icons
 
 const slides = [
   {
@@ -27,15 +28,15 @@ const slides = [
 ];
 
 const imageVariants = {
-  initial: { opacity: 0, scale: 2.0 },
-  animate: { opacity: 1, scale: 1, transition: { duration: 0.5, ease: "easeOut" } },
-  exit: { opacity: 0, scale: 0.9, transition: { duration: 0.3, ease: "easeIn" } },
+  initial: { opacity: 0, scale: 1.5 },
+  animate: { opacity: 1, scale: 1, transition: { duration: 0.6, ease: "easeOut" } },
+  exit: { opacity: 0, scale: 0.9, transition: { duration: 0.4, ease: "easeIn" } },
 };
 
 const textVariants = {
-  initial: { opacity: 0, x: 50 },
-  animate: { opacity: 1, x: 0, transition: { duration: 1.2, ease: "easeOut" } },
-  exit: { opacity: 0, x: -50, transition: { duration: 0.9, ease: "easeIn" } },
+  initial: { opacity: 0, x: 100 },
+  animate: { opacity: 1, x: 0, transition: { duration: 1, ease: "easeOut" } },
+  exit: { opacity: 0, x: -100, transition: { duration: 0.8, ease: "easeIn" } },
 };
 
 const HeroSlider = () => {
@@ -97,19 +98,25 @@ const HeroSlider = () => {
         ))}
       </div>
 
+      {/* Updated iPhone-style arrows */}
       <button
         onClick={prevSlide}
-        className="absolute left-2 sm:left-3 top-1/2 -translate-y-1/2 bg-black text-white shadow p-2 sm:p-3 rounded-full hover:bg-gray-800 transition"
+        disabled={current === 0}
+        className={`absolute left-3 top-1/2 -translate-y-1/2 p-2 sm:p-3 rounded-full shadow-md text-white ${
+          current === 0 ? "bg-gray-300 cursor-not-allowed" : "bg-black hover:bg-gray-800"
+        } transition`}
       >
-        &lt;
-      </button>
-      <button
-        onClick={nextSlide}
-        className="absolute right-2 sm:right-3 top-1/2 -translate-y-1/2 bg-black text-white shadow p-2 sm:p-3 rounded-full hover:bg-gray-800 transition"
-      >
-        &gt;
+        <IoChevronBackSharp size={24} />
       </button>
 
+      <button
+        onClick={nextSlide}
+        className="absolute right-3 top-1/2 -translate-y-1/2 p-2 sm:p-3 rounded-full shadow-md bg-black hover:bg-gray-800 text-white transition"
+      >
+        <IoChevronForwardSharp size={24} />
+      </button>
+
+      {/* Dots indicator */}
       <div className="absolute bottom-5 flex gap-2 justify-center w-full">
         {slides.map((_, idx) => (
           <button
