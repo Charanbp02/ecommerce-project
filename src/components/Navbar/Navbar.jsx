@@ -37,8 +37,9 @@ const Header = () => {
   };
 
   const handleCartClick = () => {
-    setCartCount(prev => prev + 1);
-  };
+  navigate("/cart"); // navigate to Cart page
+};
+
 
   const handleOrderClick = () => {
     navigate("/orders");

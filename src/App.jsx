@@ -10,6 +10,7 @@ import CustomerReviews from './components/home-page-components/CustomerReviews';
 import FeaturedCollection from './components/home-page-components/FeaturedCollection';
 import ProductDetails from './components/ProductDetails/ProductDetails';
 import Footer from './components/footer-components/Footer';
+import Cart from "./pages/Cart"; 
 
 const Home = () => (
   <>
@@ -31,6 +32,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/product" element={<ProductDetails />} />
+        <Route path="/cart" element={<Cart />} /> {/* <-- Cart Route */}
       </Routes>
     </Router>
   );
