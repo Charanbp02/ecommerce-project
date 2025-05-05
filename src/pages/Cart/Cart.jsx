@@ -1,6 +1,9 @@
+// Cart.js
 import { useState } from "react";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
 
 const Cart = () => {
+  const navigate = useNavigate(); // Initialize useNavigate
   const [cartItems, setCartItems] = useState([
     {
       id: 1,
@@ -92,7 +95,18 @@ const Cart = () => {
   const handleBuyNow = (id) => {
     const item = cartItems.find((item) => item.id === id);
     showNotification(`Proceeding to checkout for ${item.title}`);
-    // Implement actual checkout logic here (e.g., redirect to checkout page)
+    // Navigate to checkout with single item
+    navigate("/checkout", {
+      state: {
+        cartItems: [item],
+        address,
+        finalAmount: item.discountedPrice * item.quantity + packagingFee - couponDiscount,
+        discountTotal: (item.originalPrice - item.discountedPrice) * item.quantity,
+        couponDiscount,
+        packagingFee,
+        deliveryCharges: 0,
+      },
+    });
   };
 
   const handlePlaceOrder = () => {
@@ -100,9 +114,18 @@ const Cart = () => {
       showNotification("Please complete address details");
       return;
     }
-    showNotification("Order placed successfully!");
-    setCartItems([]);
-    // Implement actual order placement logic here
+    // Navigate to checkout page instead of clearing cart
+    navigate("/checkout", {
+      state: {
+        cartItems,
+        address,
+        finalAmount,
+        discountTotal,
+        couponDiscount,
+        packagingFee,
+        deliveryCharges,
+      },
+    });
   };
 
   const handleApplyCoupon = () => {
@@ -125,7 +148,7 @@ const Cart = () => {
     0
   );
   const packagingFee = 29;
-  const deliveryCharges = cartItems.length > 0 ? 0 : 120; // Free delivery for non-empty cart
+  const deliveryCharges = cartItems.length > 0 ? 0 : 120;
   const finalAmount =
     cartItems.reduce(
       (acc, item) => acc + item.discountedPrice * item.quantity,
@@ -193,7 +216,9 @@ const Cart = () => {
             <>
               <p className="text-sm text-gray-600">
                 Deliver to:{" "}
-                <span className="font-semibold text-black">{address.name}, {address.pincode}</span>
+                <span className="font-semibold text-black">
+                  {address.name}, {address.pincode}
+                </span>
               </p>
               <p className="text-xs text-gray-500 mt-1">{address.street}</p>
               <button
@@ -388,7 +413,7 @@ const Cart = () => {
             onClick={handlePlaceOrder}
             className="w-full bg-yellow-400 hover:bg-yellow-500 text-white font-semibold py-3 rounded-xl"
           >
-            Place Order (₹{finalAmount})
+            Continue (₹{finalAmount})
           </button>
         </div>
       )}

@@ -7,7 +7,7 @@ import {
   FaEye,
 } from "react-icons/fa";
 import { toast } from "react-hot-toast";
-import { useNavigate } from "react-router-dom"; // Added this
+import { useNavigate } from "react-router-dom";
 
 const products = [
   {
@@ -38,7 +38,7 @@ const products = [
 ];
 
 const TrendingProducts = () => {
-  const navigate = useNavigate(); // Added
+  const navigate = useNavigate();
   const sliderRef = useRef();
   const [quickViewProduct, setQuickViewProduct] = useState(null);
   const [wishlist, setWishlist] = useState([]);
@@ -78,20 +78,18 @@ const TrendingProducts = () => {
 
   return (
     <div className="px-6 py-10">
-      {/* Title + View All */}
       <div className="flex items-center justify-between mb-6">
         <h2 className="text-3xl font-bold relative inline-block after:content-[''] after:absolute after:left-0 after:-bottom-2 after:w-full after:h-1 after:bg-black">
           Trending Products
         </h2>
         <button
-          onClick={() => navigate("/all-products")} // Navigate to /all-products
+          onClick={() => navigate("/all-products")}
           className="text-primary font-medium hover:underline"
         >
           View All
         </button>
       </div>
 
-      {/* Product Slider */}
       <div className="relative">
         <button
           onClick={() => scroll(-300)}
@@ -108,7 +106,8 @@ const TrendingProducts = () => {
           {products.map((product, i) => (
             <div
               key={i}
-              className="min-w-[250px] bg-white rounded-xl shadow p-4 relative group"
+              className="min-w-[250px] bg-white rounded-xl shadow p-4 relative group cursor-pointer"
+              onClick={() => navigate(`/category/${product.category}`)}
             >
               <img
                 src={product.image}
@@ -121,16 +120,21 @@ const TrendingProducts = () => {
                 </div>
               )}
 
-              {/* Hover Icons */}
               <div className="absolute top-4 right-4 flex flex-col gap-3 opacity-0 group-hover:opacity-100 transition">
                 <button
-                  onClick={() => setQuickViewProduct(product)}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setQuickViewProduct(product);
+                  }}
                   className="bg-white p-2 rounded-full shadow-md hover:bg-gray-200"
                 >
                   <FaEye className="w-4 h-4" />
                 </button>
                 <button
-                  onClick={() => toggleWishlist(product)}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    toggleWishlist(product);
+                  }}
                   className="bg-white p-2 rounded-full shadow-md hover:bg-gray-200"
                 >
                   <FaHeart
@@ -139,9 +143,11 @@ const TrendingProducts = () => {
                 </button>
               </div>
 
-              {/* Add to Cart Button */}
               <button
-                onClick={() => addToCart(product)}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  addToCart(product);
+                }}
                 className="absolute bottom-20 left-1/2 -translate-x-1/2 bg-black text-white px-6 py-2 rounded-full flex items-center justify-center gap-2 hover:bg-gray-800 opacity-0 group-hover:opacity-100 transition"
               >
                 <FaShoppingBag /> Add To Cart
@@ -172,7 +178,6 @@ const TrendingProducts = () => {
         </button>
       </div>
 
-      {/* Quick View Modal */}
       {quickViewProduct && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
           <div className="bg-white p-6 rounded-lg max-w-sm w-full relative">
